@@ -25,9 +25,10 @@ class PostsFragment : Fragment(), OnPostClickListener {
     private lateinit var binding: FragmentPostsBinding
     private val viewModel by viewModels<PostsViewModel>()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i("PostFragment", "onCreate")
+        viewModel.isFavoriteItem()
     }
 
     override fun onCreateView(

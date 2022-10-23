@@ -22,6 +22,11 @@ class PostsViewModel @Inject constructor(private val postRepository: PostReposit
         get() = _postLiveData
 
 
+   /* private var _postUptadedData = MutableLiveData<List<PostDTO>>()
+    val postUptadedData : LiveData<List<PostDTO>>
+    get() = _postUptadedData*/
+
+
     private val _eventStateLiveData = MutableLiveData<PostViewEvent>()
     val eventStateLiveData: LiveData<PostViewEvent>
         get() = _eventStateLiveData
@@ -103,11 +108,24 @@ class PostsViewModel @Inject constructor(private val postRepository: PostReposit
         }
     }
 
+     fun isFavoriteItem() {
+        when(val current = _postLiveData.value) {
+            is DataState.Success -> {
+                val currentList = current.data?.map {
+                    it.copy(isFavorite = isExists(it.id))
+                }
+               _postLiveData.value = DataState.Success(currentList)
+            }
+            else -> {}
+        }
+    }
 
-    private fun isExists(id: Int): Boolean {
+    private fun isExists(id: Int?): Boolean {
         id.let {
-            postRepository.getPostById(it)?.let {
-                return true
+            if (it != null) {
+                postRepository.getPostById(it)?.let {
+                    return true
+                }
             }
         }
         return false

@@ -35,8 +35,10 @@ class FavoriteViewModel @Inject constructor(private val favoriteRepository: Favo
                     PostEntity
                 )
             }
+            getAllFavoritePost()
         }
     }
+
 
 
 

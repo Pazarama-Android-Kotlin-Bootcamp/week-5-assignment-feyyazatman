@@ -21,6 +21,10 @@ class FavoriteFragment : Fragment() , OnPostClickListener {
     private lateinit var binding : FragmentFavoriteBinding
     private val viewModel by viewModels<FavoriteViewModel>()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.getAllFavoritePost()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,10 +49,6 @@ class FavoriteFragment : Fragment() , OnPostClickListener {
 
     }
 
-    override fun onStart() {
-        super.onStart()
-        viewModel.getAllFavoritePost()
-    }
 
     override fun onPostClick(post: PostDTO) {
         viewModel.onDeletePost(post)
