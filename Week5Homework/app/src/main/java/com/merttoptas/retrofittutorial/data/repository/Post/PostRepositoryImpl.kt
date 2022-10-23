@@ -28,7 +28,7 @@ class PostRepositoryImpl constructor(
         return postsDatabase.postDao().insert(post)
     }
 
-    override fun deleteFavoritePost(id: String) {
+    override fun deleteFavoritePost(id: Int) {
         return postsDatabase.postDao().deleteFavoriteById(id)
     }
 }

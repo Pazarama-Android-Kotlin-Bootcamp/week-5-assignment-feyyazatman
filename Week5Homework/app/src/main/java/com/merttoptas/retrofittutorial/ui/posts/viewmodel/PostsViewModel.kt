@@ -64,16 +64,19 @@ class PostsViewModel @Inject constructor(private val postRepository: PostReposit
     }
 
     fun onFavoritePost(post: PostDTO) {
-            postRepository.getPostById(post.id ?: 0)?.let { PostEntity ->
-                postRepository.deleteFavoritePost(
-                    post.id.toString()
-                )
+        post.id?.let {
+            postRepository.getPostById(it)?.let { PostEntity ->
+                PostEntity.postId?.let { postId ->
+                    postRepository.deleteFavoritePost(
+                        postId
+                    )
+                }
                 updateFavoriteState(post.id,false)
             }
-         ?: kotlin.run {
+        } ?: kotlin.run {
             postRepository.insertFavoritePost(
                 PostEntity(
-                    postId= post.id.toString(),
+                    postId = post.id,
                     postTitle = post.title,
                     postBody = post.body,
                 )

@@ -13,5 +13,5 @@ interface PostRepository {
     fun getPosts(): Call<List<Post>>
     fun getPostById(id: Int): PostEntity?
     fun insertFavoritePost(post: PostEntity)
-    fun deleteFavoritePost(id: String)
+    fun deleteFavoritePost(id: Int)
 }

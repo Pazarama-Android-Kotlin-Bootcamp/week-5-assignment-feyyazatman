@@ -51,7 +51,7 @@ class FavoriteFragment : Fragment() , OnPostClickListener {
     }
 
     override fun onPostClick(post: PostDTO) {
-        viewModel.onFavoritePost(post)
+        viewModel.onDeletePost(post)
     }
 
 

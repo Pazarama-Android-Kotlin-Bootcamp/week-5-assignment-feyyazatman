@@ -18,11 +18,11 @@ interface PostDao : BaseDao<PostEntity> {
     @Query("DELETE FROM ${Constants.TABLE_POST_NAME}")
     fun deleteAll()
 
-    @Query("SELECT * FROM ${Constants.TABLE_POST_NAME} WHERE id = :id")
-    fun getPostById(id: Int): PostEntity?
+    @Query("SELECT * FROM ${Constants.TABLE_POST_NAME} WHERE PostId = :PostId")
+    fun getPostById(PostId: Int): PostEntity?
 
 
     @Query("DELETE FROM ${Constants.TABLE_POST_NAME} WHERE postId = :postId")
-    fun deleteFavoriteById(postId: String)
+    fun deleteFavoriteById(postId: Int)
 
 }
